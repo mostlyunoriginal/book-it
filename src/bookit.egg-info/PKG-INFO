@@ -2,11 +2,11 @@ Metadata-Version: 2.4
 Name: bookit
 Version: 0.1.0
 Summary: A codebook creation package for DataFrames
-Author-email: Your Name <you@example.com>
+Author: Lance Couzens
 License: MIT
-Project-URL: Homepage, https://github.com/yourusername/book-it
-Project-URL: Documentation, https://github.com/yourusername/book-it#readme
-Project-URL: Repository, https://github.com/yourusername/book-it
+Project-URL: Homepage, https://github.com/mostlyunoriginal/book-it
+Project-URL: Documentation, https://mostlyunoriginal.github.io/book-it/
+Project-URL: Repository, https://github.com/mostlyunoriginal/book-it
 Classifier: Development Status :: 3 - Alpha
 Classifier: Intended Audience :: Science/Research
 Classifier: License :: OSI Approved :: MIT License
@@ -19,6 +19,7 @@ Requires-Python: >=3.10
 Description-Content-Type: text/markdown
 License-File: LICENSE
 Requires-Dist: fpdf2>=2.7.0
+Requires-Dist: matplotlib>=3.7.0
 Provides-Extra: polars
 Requires-Dist: polars>=0.20.0; extra == "polars"
 Provides-Extra: pandas
@@ -27,6 +28,11 @@ Provides-Extra: dev
 Requires-Dist: pytest>=7.0.0; extra == "dev"
 Requires-Dist: polars>=0.20.0; extra == "dev"
 Requires-Dist: pandas>=2.0.0; extra == "dev"
+Provides-Extra: docs
+Requires-Dist: mkdocs>=1.5.0; extra == "docs"
+Requires-Dist: mkdocs-material>=9.0.0; extra == "docs"
+Requires-Dist: mkdocstrings[python]>=0.24.0; extra == "docs"
+Requires-Dist: polars>=0.20.0; extra == "docs"
 Dynamic: license-file
 
 # book-it

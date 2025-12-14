@@ -1,0 +1,31 @@
+name: Deploy Documentation
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: |
+          pip install -e ".[docs]"
+
+      - name: Generate sample codebook
+        run: |
+          python examples/demo.py
+          cp sample_codebook.pdf docs/assets/
+
+      - name: Build and Deploy
+        run: mkdocs gh-deploy --force
