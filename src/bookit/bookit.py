@@ -127,23 +127,13 @@ class BookIt:
             if col_name not in all_columns:
                 raise ValueError(f"Column '{col_name}' not found in DataFrame.")
             
-            # Get the series/column
-            series = df[col_name]
-            
-            # Create Variable
-            var = Variable(
+            self.add_variable(
                 name=col_name,
                 description=descriptions.get(col_name, ""),
-                dtype=get_dtype_string(series),
                 values=value_labels.get(col_name, {}),
                 suppress_numeric_stats=(col_name in suppress_numeric_stats),
+                data=df[col_name],
             )
-            
-            # Compute statistics if enabled
-            if self.config.include_stats:
-                var.stats = compute_stats(series)
-            
-            self.variables.append(var)
         
         return self
     
@@ -155,20 +145,35 @@ class BookIt:
         values: dict[Any, str] | None = None,
         context: str = "",
         suppress_numeric_stats: bool = False,
+        data: Any = None,
     ) -> "BookIt":
         """Manually add a variable to the codebook.
         
         Args:
             name: Variable name.
             description: Human-readable description.
-            dtype: Data type string.
+            dtype: Data type string. If not provided and data is given,
+                   will be inferred from the data.
             values: Value labels for categorical variables.
             context: Additional contextual notes.
             suppress_numeric_stats: If True, hide mean/std/min/max in output.
+            data: Optional data to compute statistics from. Accepts polars Series,
+                  pandas Series, list, tuple, or numpy array.
             
         Returns:
             self, for method chaining.
+            
+        Example:
+            >>> book.add_variable(
+            ...     "score",
+            ...     description="Test score",
+            ...     data=[85, 90, 78, 92, None, 88]
+            ... )
         """
+        # Infer dtype from data if not provided
+        if data is not None and not dtype:
+            dtype = get_dtype_string(data)
+        
         var = Variable(
             name=name,
             description=description,
@@ -177,6 +182,11 @@ class BookIt:
             context=context,
             suppress_numeric_stats=suppress_numeric_stats,
         )
+        
+        # Compute statistics from data if provided
+        if data is not None and self.config.include_stats:
+            var.stats = compute_stats(data)
+        
         self.variables.append(var)
         return self
     

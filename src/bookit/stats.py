@@ -5,14 +5,14 @@ from typing import Any
 from .variable import VariableStats
 
 
-def compute_stats(series: Any) -> VariableStats:
-    """Compute summary statistics from a DataFrame column.
+def compute_stats(data: Any) -> VariableStats:
+    """Compute summary statistics from data.
     
-    Supports both polars Series and pandas Series. Automatically detects
-    the type and dispatches to the appropriate implementation.
+    Supports polars Series, pandas Series, list, tuple, and numpy array.
+    Automatically detects the type and dispatches to the appropriate implementation.
     
     Args:
-        series: A polars Series or pandas Series.
+        data: A polars Series, pandas Series, list, tuple, or numpy array.
         
     Returns:
         VariableStats with computed statistics.
@@ -25,18 +25,26 @@ def compute_stats(series: Any) -> VariableStats:
         5
         >>> stats.missing
         1
+        
+        >>> # Also works with plain lists
+        >>> stats = compute_stats([1, 2, 3, None, 5])
     """
-    # Detect series type by module name (duck typing)
-    module = type(series).__module__
+    # Detect data type by module name (duck typing)
+    module = type(data).__module__
+    type_name = type(data).__name__
     
     if module.startswith("polars"):
-        return _compute_stats_polars(series)
+        return _compute_stats_polars(data)
     elif module.startswith("pandas"):
-        return _compute_stats_pandas(series)
+        return _compute_stats_pandas(data)
+    elif module.startswith("numpy") or type_name == "ndarray":
+        return _compute_stats_sequence(data, from_numpy=True)
+    elif isinstance(data, (list, tuple)):
+        return _compute_stats_sequence(data, from_numpy=False)
     else:
         raise TypeError(
-            f"Unsupported series type: {type(series)}. "
-            "Expected polars.Series or pandas.Series."
+            f"Unsupported data type: {type(data)}. "
+            "Expected polars.Series, pandas.Series, list, tuple, or numpy.ndarray."
         )
 
 
@@ -121,20 +129,41 @@ def _compute_stats_pandas(series: Any) -> VariableStats:
     return stats
 
 
-def get_dtype_string(series: Any) -> str:
-    """Get a human-readable dtype string from a series.
+def get_dtype_string(data: Any) -> str:
+    """Get a human-readable dtype string from data.
     
     Args:
-        series: A polars Series or pandas Series.
+        data: A polars Series, pandas Series, list, tuple, or numpy array.
         
     Returns:
         Human-readable data type string.
     """
-    module = type(series).__module__
+    module = type(data).__module__
+    type_name = type(data).__name__
     
     if module.startswith("polars"):
-        return str(series.dtype)
+        return str(data.dtype)
     elif module.startswith("pandas"):
-        return str(series.dtype)
+        return str(data.dtype)
+    elif module.startswith("numpy") or type_name == "ndarray":
+        return str(data.dtype)
+    elif isinstance(data, (list, tuple)):
+        # Infer type from first non-None element
+        for item in data:
+            if item is not None:
+                return type(item).__name__
+        return "unknown"
     else:
         return "unknown"
+
+
+def _compute_stats_sequence(data: Any, from_numpy: bool = False) -> VariableStats:
+    """Compute statistics for a list, tuple, or numpy array.
+    
+    Converts to polars Series internally for consistent stats computation.
+    """
+    import polars as pl
+    
+    # Convert to polars Series for consistent handling
+    series = pl.Series("data", list(data))
+    return _compute_stats_polars(series)
