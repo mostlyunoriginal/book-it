@@ -20,7 +20,7 @@ print(f"DataFrame shape: {df.shape}")
 print(f"Columns: {df.columns}")
 
 # Test context manager with auto-save
-output_path = "/workspaces/book-it/sample_codebook.pdf"
+output_path = "sample_codebook.pdf"
 
 with BookIt(
     "Sample Survey Codebook",
@@ -54,5 +54,5 @@ print(f"✓ Variables documented: {len(book.variables)}")
 # Also test explicit save pattern
 book2 = BookIt("Test Explicit Save", author="Test Author")
 book2.from_dataframe(df, columns=["age", "income"])
-book2.save("/workspaces/book-it/sample_codebook_explicit.pdf")
+book2.save("sample_codebook_explicit.pdf")
 print(f"✓ Explicit save also worked!")
