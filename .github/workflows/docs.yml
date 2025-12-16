@@ -33,6 +33,7 @@ jobs:
           python examples/demo.py
           mkdir -p docs/assets
           cp sample_codebook.pdf docs/assets/
+          cp mtcars_codebook.pdf docs/assets/
 
       - name: Build docs
         run: mkdocs build
