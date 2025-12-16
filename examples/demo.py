@@ -1,8 +1,6 @@
 """Test script to generate a sample codebook and verify the package works."""
 
 import polars as pl
-import sys
-sys.path.insert(0, "/workspaces/book-it/src")
 
 from bookit_df import BookIt
 from plotnine.data import mtcars
