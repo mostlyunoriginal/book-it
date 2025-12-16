@@ -6,7 +6,7 @@ A Python package for creating PDF codebooks from DataFrames.
 
 ## What is BookIt?
 
-`bookit` helps you document your data by generating professional PDF codebooks from polars or pandas DataFrames. It's designed as an educational project showcasing Object-Oriented Programming (OOP) principles in Python.
+`bookit` helps you document your data by generating professional PDF codebooks from polars or pandas DataFrames.
 
 ### Key Features
 
