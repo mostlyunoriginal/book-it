@@ -29,6 +29,7 @@ def _extract_chart_data(data: Any) -> list[Any]:
         return [x for x in data if x is not None]
     else:
         return list(data)
+        
 class BookIt:
     """Create a codebook documenting a DataFrame's variables.
     
