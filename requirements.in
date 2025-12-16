@@ -16,3 +16,4 @@ matplotlib
 build
 twine
 fpdf2
+plotnine

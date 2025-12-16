@@ -229,7 +229,9 @@ markupsafe==3.0.3
     #   mkdocstrings
     #   nbconvert
 matplotlib==3.10.8
-    # via -r requirements.in
+    # via
+    #   -r requirements.in
+    #   plotnine
 matplotlib-inline==0.2.1
     # via
     #   ipykernel
@@ -244,6 +246,8 @@ mergedeep==1.3.4
     #   mkdocs-get-deps
 mistune==3.1.4
     # via nbconvert
+mizani==0.14.3
+    # via plotnine
 mkdocs==1.6.1
     # via
     #   -r requirements.in
@@ -305,7 +309,12 @@ numpy==2.3.5
     # via
     #   contourpy
     #   matplotlib
+    #   mizani
     #   pandas
+    #   patsy
+    #   plotnine
+    #   scipy
+    #   statsmodels
 overrides==7.7.0
     # via jupyter-server
 packaging==25.0
@@ -321,17 +330,24 @@ packaging==25.0
     #   mkdocs
     #   nbconvert
     #   pytest
+    #   statsmodels
     #   twine
 paginate==0.5.7
     # via mkdocs-material
 pandas==2.3.3
-    # via -r requirements.in
+    # via
+    #   -r requirements.in
+    #   mizani
+    #   plotnine
+    #   statsmodels
 pandocfilters==1.5.1
     # via nbconvert
 parso==0.8.5
     # via jedi
 pathspec==0.12.1
     # via mkdocs
+patsy==1.0.2
+    # via statsmodels
 pexpect==4.9.0
     # via ipython
 pillow==12.0.0
@@ -342,6 +358,8 @@ platformdirs==4.5.1
     # via
     #   jupyter-core
     #   mkdocs-get-deps
+plotnine==0.15.2
+    # via -r requirements.in
 pluggy==1.6.0
     # via pytest
 polars==1.36.1
@@ -450,6 +468,11 @@ rpds-py==0.30.0
     # via
     #   jsonschema
     #   referencing
+scipy==1.16.3
+    # via
+    #   mizani
+    #   plotnine
+    #   statsmodels
 secretstorage==3.5.0
     # via keyring
 send2trash==1.8.3
@@ -464,6 +487,8 @@ soupsieve==2.8
     # via beautifulsoup4
 stack-data==0.6.3
     # via ipython
+statsmodels==0.14.6
+    # via plotnine
 terminado==0.18.1
     # via
     #   jupyter-server
