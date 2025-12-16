@@ -46,7 +46,7 @@ with BookIt("Survey Codebook", output="codebook.pdf", author="Research Team") as
 ## Installation
 
 ```bash
-pip install book-it
+pip install bookit-df
 ```
 
 ### Optional Dependencies
