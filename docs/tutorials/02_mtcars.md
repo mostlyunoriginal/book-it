@@ -98,16 +98,13 @@ Two variables in mtcars are categorical but stored as numbers:
 |----------|--------|---------|
 | `vs` | 0, 1 | Engine shape (V-shaped or Straight) |
 | `am` | 0, 1 | Transmission type (Automatic or Manual) |
-| `cyl` | 4, 6, 8 | Number of cylinders |
-| `gear` | 3, 4, 5 | Number of forward gears |
-| `carb` | 1, 2, 3, 4, 6, 8 | Number of carburetors |
 
 ### Suppressing Numeric Stats
 
 For these categorical variables, we suppress misleading summary statistics:
 
 ```python
-suppress_numeric_stats=["am", "vs", "cyl", "gear", "carb"]
+suppress_numeric_stats=["am", "vs"]
 ```
 
 !!! note "Why suppress?"
