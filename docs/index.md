@@ -22,7 +22,7 @@ A Python package for creating PDF codebooks from DataFrames.
 
 ```python
 import polars as pl
-from bookit import BookIt
+from book_it import BookIt
 
 df = pl.read_csv("survey_data.csv")
 
@@ -46,17 +46,17 @@ with BookIt("Survey Codebook", output="codebook.pdf", author="Research Team") as
 ## Installation
 
 ```bash
-pip install bookit
+pip install book-it
 ```
 
 ### Optional Dependencies
 
 ```bash
 # polars support (recommended)
-pip install bookit[polars]
+pip install book-it[polars]
 
 # pandas support
-pip install bookit[pandas]
+pip install book-it[pandas]
 ```
 
 ---

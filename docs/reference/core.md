@@ -6,7 +6,7 @@ This module contains the main classes for creating codebooks.
 
 ## BookIt
 
-::: bookit.BookIt
+::: book_it.BookIt
     options:
         show_root_heading: true
         show_source: true
@@ -17,7 +17,7 @@ This module contains the main classes for creating codebooks.
 
 ## Variable
 
-::: bookit.Variable
+::: book_it.Variable
     options:
         show_root_heading: true
         show_source: true
@@ -27,7 +27,7 @@ This module contains the main classes for creating codebooks.
 
 ## VariableStats
 
-::: bookit.VariableStats
+::: book_it.VariableStats
     options:
         show_root_heading: true
         show_source: true
@@ -37,7 +37,7 @@ This module contains the main classes for creating codebooks.
 
 ## CodebookConfig
 
-::: bookit.CodebookConfig
+::: book_it.CodebookConfig
     options:
         show_root_heading: true
         show_source: true
