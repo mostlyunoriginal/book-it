@@ -1,12 +1,12 @@
-# BookIt
+# bookit-df
 
 A Python package for creating PDF codebooks from DataFrames.
 
 ---
 
-## What is BookIt?
+## What is bookit-df?
 
-`bookit` helps you document your data by generating professional PDF codebooks from polars or pandas DataFrames.
+`bookit-df` helps you document your data by generating professional PDF codebooks from polars or pandas DataFrames.
 
 ### Key Features
 
