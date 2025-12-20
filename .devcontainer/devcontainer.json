@@ -1,5 +1,5 @@
 {
-    "name": "book-it",
+    "name": "bookit-df",
     "image": "mcr.microsoft.com/devcontainers/python:3.11",
     "features": {
         "ghcr.io/devcontainers-extra/features/uv:1": {}
